@@ -1,16 +1,28 @@
-from distutils.core import setup
+import os
+from setuptools import setup, find_packages
 
-files = [
-    'gitinit/gitignores/*'
-]
+
+def read(fname):
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
+
 setup(
-    name='gitinit',
-    packages=['gitinit'],
-    version='1.0.0',
-    description='Initiates git with gitignore for provided language',
-    author='Bibhas C Debnath',
-    author_email="me@bibhas.in",
-    url="https://github.com/iambibhas/gitinit",
-    package_data={'gitinit': files},
-    scripts=["gitinit", ],
+    name = "gitinit",
+    version = "1.0.0",
+    author = "Bibhas C Debnath",
+    author_email = "me@bibhas.in",
+    description = ("Initiates git with gitignore for provided language"),
+    license = "LGPL",
+    keywords = "example documentation tutorial",
+    url = "https://github.com/iambibhas/gitinit",
+    packages=find_packages(),
+    long_description=read('README.txt'),
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Topic :: Utilities",
+        "License :: OSI Approved :: BSD License",
+    ],
+    package_data={'gitinit': ['*.gitignore', 'gitinit/gitignores/*.gitignore', 'gitinit/gitignores/Global/*.gitignore']},
+    include_package_data=True,
+    entry_points={"console_scripts": ["gitinit=gitinit.gitinit:main"]},
 )
