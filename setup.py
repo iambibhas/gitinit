@@ -7,14 +7,14 @@ def read(fname):
 
 
 setup(
-    name = "gitinit",
-    version = "1.0.1",
-    author = "Bibhas C Debnath",
-    author_email = "me@bibhas.in",
-    description = ("Initiates git with gitignore for provided language"),
-    license = "LGPL",
-    keywords = "example documentation tutorial",
-    url = "https://github.com/iambibhas/gitinit",
+    name="gitinit",
+    version="1.0.1",
+    author="Bibhas C Debnath",
+    author_email="me@bibhas.in",
+    description=("Initiates git with gitignore for provided language"),
+    license="LGPL",
+    keywords="example documentation tutorial",
+    url="https://github.com/iambibhas/gitinit",
     packages=find_packages(),
     long_description=read('README.md'),
     package_data={'gitinit': ['*.gitignore', 'gitinit/gitignores/*.gitignore', 'gitinit/gitignores/Global/*.gitignore']},
