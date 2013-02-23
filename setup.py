@@ -17,11 +17,6 @@ setup(
     url = "https://github.com/iambibhas/gitinit",
     packages=find_packages(),
     long_description=read('README.txt'),
-    classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: BSD License",
-    ],
     package_data={'gitinit': ['*.gitignore', 'gitinit/gitignores/*.gitignore', 'gitinit/gitignores/Global/*.gitignore']},
     include_package_data=True,
     entry_points={"console_scripts": ["gitinit=gitinit.gitinit:main"]},
