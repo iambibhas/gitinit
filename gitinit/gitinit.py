@@ -26,10 +26,7 @@ class GitignoreManager:
         self.gitignores = []
 
     def filename(self, language):
-        if not language.islower():
-            return '%s.gitignore' % language
-        else:
-            return '%s.gitignore' % language.capitalize()
+        return '%s.gitignore' % language
 
     def read(self, filename):
         try:
