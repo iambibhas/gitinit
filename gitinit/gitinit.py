@@ -6,6 +6,7 @@ __author__ = "Bibhas C Debnath <me@bibhas.in>"
 __licence__ = "LGPL"
 
 import os
+from subprocess import call
 try:
     import optparse
 except ImportError:
@@ -60,7 +61,7 @@ class GitignoreManager:
         if language:
             filename = self.filename(language)
             for idx, gi in enumerate(self.all_gitignores()):
-                if gi.find(filename) >= 0:
+                if gi.lower().find(filename.lower()) >= 0:
                     return gi
         raise LanguageNotValidError('No gitignore file for the specified language "%s"' % language)
 
@@ -79,5 +80,6 @@ parser.add_option('-l', '--language', help="created .gitignore file for this lan
 
 def main():
     (opts, args) = parser.parse_args()
-    language = opts.language
+    language = opts.language or 'generic'
     manager.get_gitignore(language)
+    call(['git', 'init'])
