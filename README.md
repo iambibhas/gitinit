@@ -21,3 +21,5 @@ Help
 ----
 
     $ gitinit -h
+
+[Here is the full list](https://github.com/iambibhas/gitinit/tree/master/gitinit/gitignores) of supportes languages. 
