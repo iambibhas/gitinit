@@ -36,6 +36,9 @@ class GitignoreManager:
         return content.read()
 
     def all_gitignores(self):
+        if self.gitignores:
+            return self.gitignores
+
         gitignores = []
 
         def is_gitignore(filename):
@@ -75,8 +78,12 @@ manager = GitignoreManager()
 parser = optparse.OptionParser()
 parser.add_option('-l', '--language', help="created .gitignore file for this language")
 
+
 def main():
     (opts, args) = parser.parse_args()
     language = opts.language or 'generic'
     manager.get_gitignore(language)
-    call(['git', 'init'])
+    try:
+        call(['git', 'init'])
+    except Exception as e:
+        print 'Error in initiaing git repository: %s' % str(e)
