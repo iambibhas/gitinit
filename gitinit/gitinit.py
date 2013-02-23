@@ -76,7 +76,7 @@ class GitignoreManager:
 
 manager = GitignoreManager()
 parser = optparse.OptionParser()
-parser.add_option('-l', '--language', help="created .gitignore file for this language")
+parser.add_option('-l', '--language', help="create .gitignore file for this language")
 
 
 def main():
