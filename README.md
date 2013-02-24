@@ -15,7 +15,7 @@ Usage
     $ gitinit
 
     # initiates a Haskell .gitignore file  
-    $ gitignore -l haskell
+    $ gitinit -l haskell
 
 Help
 ----
