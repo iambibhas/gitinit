@@ -117,13 +117,14 @@ def main():
     args = parser.parse_args()
 
     if args.list:
-        print "List of languages supported right now:"
-        l = []
+        print "List of languages supported right now:\n"
         gi_list = manager.all_gitignores()
-        for gi in gi_list:
-            if gi:
-                l.append(gi.split('/')[-1].split('.')[0])
-        print ', '.join(l)
+        l = [gi.split('/')[-1].split('.')[0].lower() for gi in gi_list if gi]
+        # print the list in columns
+        for idx, ll in enumerate(sorted(l)):
+            print '%-20s' % ll,
+            if (idx + 1) % 4 == 0:
+                print
         return
 
     language = args.language or 'generic'
