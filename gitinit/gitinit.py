@@ -69,6 +69,7 @@ class GitignoreManager:
         filename = self.exists(language)
         content = self.read(filename)
         if content:
+            print 'Creating .gitignore for "%s"' % language
             gifile = open(os.path.join(os.getcwd(), '.gitignore'), 'w')
             gifile.write(content)
             gifile.close()
