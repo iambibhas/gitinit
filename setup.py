@@ -6,7 +6,7 @@ __readme__ = os.path.join(__currdir__, 'README')
 
 setup(
     name="gitinit",
-    version="1.0.5",
+    version="1.0.6",
     author="Bibhas C Debnath",
     author_email="me@bibhas.in",
     description=("Initiates git with gitignore for provided language"),

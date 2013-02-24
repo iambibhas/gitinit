@@ -6,6 +6,7 @@ __author__ = "Bibhas C Debnath <me@bibhas.in>"
 __licence__ = "LGPL"
 
 import os
+import sys
 from subprocess import call
 try:
     import argparse
@@ -27,6 +28,33 @@ class GitignoreManager:
 
     def filename(self, language):
         return '%s.gitignore' % language
+
+    def to_overwrite(self):
+        yes = set(['yes', 'y', ''])
+        no = set(['no', 'n'])
+        choice = raw_input(".gitignore file exists. Do you want to overwrite? (y/n): ").lower()
+        if choice in yes:
+            return True
+        elif choice in no:
+            return False
+        else:
+            sys.stdout.write("Please respond with 'yes' or 'no'")
+            self.if_overwrite()
+
+    def create_gitignore(self, content):
+        gifile = open(os.path.join(os.getcwd(), '.gitignore'), 'w')
+        gifile.write(content)
+        gifile.close()
+
+    def init_git(self):
+        try:
+            call(['git', 'init'])
+        except Exception as e:
+            print 'Error in initiaing git repository: %s' % str(e)
+
+    def init(self, content):
+        self.create_gitignore(content)
+        self.init_git()
 
     def read(self, filename):
         try:
@@ -70,9 +98,13 @@ class GitignoreManager:
         content = self.read(filename)
         if content:
             print 'Creating .gitignore for "%s"' % language
-            gifile = open(os.path.join(os.getcwd(), '.gitignore'), 'w')
-            gifile.write(content)
-            gifile.close()
+            if os.path.exists(os.path.join(os.getcwd(), '.gitignore')):
+                if self.to_overwrite():
+                    self.init(content)
+                else:
+                    self.init_git()
+            else:
+                self.init(content)
 
 
 manager = GitignoreManager()
@@ -96,7 +128,3 @@ def main():
 
     language = args.language or 'generic'
     manager.get_gitignore(language)
-    try:
-        call(['git', 'init'])
-    except Exception as e:
-        print 'Error in initiaing git repository: %s' % str(e)
