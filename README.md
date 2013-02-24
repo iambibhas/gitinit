@@ -11,10 +11,10 @@ Installation
 Usage
 -----
     
-    # initiates with a generic .gitignore file
+    # initiates with a generic .gitignore file  
     $ gitinit
 
-    # initiates a Haskell .gitignore file
+    # initiates a Haskell .gitignore file  
     $ gitignore -l haskell
 
 Help
@@ -22,4 +22,4 @@ Help
 
     $ gitinit -h
 
-[Here is the full list](https://github.com/iambibhas/gitinit/tree/master/gitinit/gitignores) of supportes languages. 
+[Here is the full list](https://github.com/iambibhas/gitinit/tree/master/gitinit/gitignores) of supported languages. 
