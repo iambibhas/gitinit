@@ -8,9 +8,9 @@ __licence__ = "LGPL"
 import os
 from subprocess import call
 try:
-    import optparse
+    import argparse
 except ImportError:
-    raise ImportError('optparse not found.')
+    raise ImportError('argparse not found.')
 
 __appdir__ = os.path.dirname(os.path.realpath(__file__))
 
@@ -76,13 +76,25 @@ class GitignoreManager:
 
 
 manager = GitignoreManager()
-parser = optparse.OptionParser()
-parser.add_option('-l', '--language', help="create .gitignore file for this language")
+parser = argparse.ArgumentParser()
+parser.add_argument('-l', '--language', help="create .gitignore file for this language")
+parser.add_argument('-L', '--list', help="shows the list of available languages", action="store_true")
 
 
 def main():
-    (opts, args) = parser.parse_args()
-    language = opts.language or 'generic'
+    args = parser.parse_args()
+
+    if args.list:
+        print "List of languages supported right now:"
+        l = []
+        gi_list = manager.all_gitignores()
+        for gi in gi_list:
+            if gi:
+                l.append(gi.split('/')[-1].split('.')[0])
+        print ', '.join(l)
+        return
+
+    language = args.language or 'generic'
     manager.get_gitignore(language)
     try:
         call(['git', 'init'])
