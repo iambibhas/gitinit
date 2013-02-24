@@ -1,5 +1,6 @@
 gitinit
 =======
+[![Build Status](https://travis-ci.org/iambibhas/gitinit.png?branch=master)](https://travis-ci.org/iambibhas/gitinit)
 
 Initiates an empty git repository with a `.gitignore` file for the provided language.
 
