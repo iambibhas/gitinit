@@ -11,12 +11,18 @@ Installation
 
 Usage
 -----
+
+    # if you already have it installed, upgrade
+    $ sudo pip install --upgrade gitinit
     
     # initiates with a generic .gitignore file  
     $ gitinit
 
     # initiates a Haskell .gitignore file  
     $ gitinit -l haskell
+
+    # See a list of languages supported
+    $ gitinit -L
 
 Help
 ----
