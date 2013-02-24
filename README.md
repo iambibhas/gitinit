@@ -9,6 +9,9 @@ Installation
 
     $ [sudo] pip install gitinit
 
+    # Or if you want the development version
+    $ [sudo] pip install -e git+git@github.com:iambibhas/gitinit.git
+
 Usage
 -----
 
