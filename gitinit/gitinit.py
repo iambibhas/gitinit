@@ -42,7 +42,7 @@ class GitignoreManager:
             self.to_overwrite()
 
     def create_gitignore(self, content):
-        print 'Creating .gitignore ...'
+        sys.stdout.write('Creating .gitignore ...')
         gifile = open(os.path.join(os.getcwd(), '.gitignore'), 'w')
         gifile.write(content)
         gifile.close()
@@ -51,7 +51,7 @@ class GitignoreManager:
         try:
             call(['git', 'init'])
         except Exception as e:
-            print 'Error in initiaing git repository: %s' % str(e)
+            sys.stdout.write('Error in initiaing git repository: %s' % str(e))
 
     def init(self, content):
         self.create_gitignore(content)
@@ -117,14 +117,14 @@ def main():
     args = parser.parse_args()
 
     if args.list:
-        print "List of languages supported right now:\n"
+        sys.stdout.write("List of languages supported right now:\n")
         gi_list = manager.all_gitignores()
         l = [gi.split('/')[-1].split('.')[0].lower() for gi in gi_list if gi]
         # print the list in columns
         for idx, ll in enumerate(sorted(l)):
-            print '%-20s' % ll,
+            sys.stdout.write('%-22s' % ll)
             if (idx + 1) % 4 == 0:
-                print
+                sys.stdout.write("\n")
         return
 
     language = args.language or 'generic'
