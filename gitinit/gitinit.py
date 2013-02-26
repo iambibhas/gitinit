@@ -30,18 +30,19 @@ class GitignoreManager:
         return '%s.gitignore' % language
 
     def to_overwrite(self):
-        yes = set(['yes', 'y', ''])
+        yes = set(['yes', 'y'])
         no = set(['no', 'n'])
-        choice = raw_input(".gitignore file exists. Do you want to overwrite? (y/n): ").lower()
+        choice = raw_input(".gitignore file exists. Do you want to overwrite? [yes/y]|[no/n]: ").lower()
         if choice in yes:
             return True
         elif choice in no:
             return False
         else:
-            sys.stdout.write("Please respond with 'yes' or 'no'")
-            self.if_overwrite()
+            sys.stdout.write("Please respond with [yes/y] or [no/n].\n")
+            self.to_overwrite()
 
     def create_gitignore(self, content):
+        print 'Creating .gitignore ...'
         gifile = open(os.path.join(os.getcwd(), '.gitignore'), 'w')
         gifile.write(content)
         gifile.close()
@@ -97,7 +98,6 @@ class GitignoreManager:
         filename = self.exists(language)
         content = self.read(filename)
         if content:
-            print 'Creating .gitignore for "%s"' % language
             if os.path.exists(os.path.join(os.getcwd(), '.gitignore')):
                 if self.to_overwrite():
                     self.init(content)
